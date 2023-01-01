@@ -1,0 +1,4 @@
+[submodule "Kristal"]
+	path = Kristal
+	url = https://github.com/KristalTeam/Kristal.git
+	branch = main
