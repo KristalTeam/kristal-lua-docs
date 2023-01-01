@@ -44,6 +44,10 @@
 ---@overload fun(texture:string|love.Image, x?:number, y?:number, width?:number, height?:number, path?:string) : Sprite
 Sprite = {}
 
+---@alias Sprite.wait_func     fun(seconds:number)
+---@alias Sprite.anim_func     fun(wait:Sprite.wait_func)
+---@alias Sprite.anim_callback fun(sprite:Sprite)
+
 function Sprite:init(texture, x, y, width, height, path) end
 
 ---@see Object.canDebugSelect

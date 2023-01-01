@@ -124,6 +124,34 @@
 ---@overload fun(x?:number, y?:number, width?:number, height?:number) : Object
 Object = {}
 
+---@class physics_table
+---@field speed_x           number  The horizontal speed of the object, in pixels per frame at 30FPS.
+---@field speed_y           number  The vertical speed of the object, in pixels per frame at 30FPS.
+---@field speed             number  The speed the object will move in the angle of its direction, in pixels per frame at 30FPS.
+---@field direction         number  The angle at which the object will move, in radians.
+---@field friction          number  The amount the object's speed will slow down, per frame at 30FPS.
+---@field gravity           number  The amount the object's speed will accelerate towards its gravity direction, per frame at 30FPS.
+---@field gravity_direction number  The angle at which the object's gravity will accelerate towards, in radians.
+---@field spin              number  The amount this object's direction will change, in radians per frame at 30FPS.
+---@field match_rotation    boolean Whether the object's rotation should also define its direction. (Defaults to false)
+---@field move_target?      table   A table containing data defined by `Object:slideTo()` or `Object:slideToSpeed()`.
+---@field move_path?        table   A table containing data defined by `Object:slidePath()`.
+
+---@class graphics_table
+---@field fade           number       The amount the object's alpha should approach its target value, per frame at 30FPS.
+---@field fade_to        number       The target alpha to approach.
+---@field fade_callback  function|nil A function that will be called when the object's alpha reaches its target value.
+---@field grow_x         number       The amount the object's `scale_x` will increase, per frame at 30FPS.
+---@field grow_y         number       The amount the object's `scale_y` will increase, per frame at 30FPS.
+---@field grow           number       The amount the object's `scale_x` and `scale_y` will increase, per frame at 30FPS.
+---@field remove_shrunk  boolean      If true, the object will remove itself if its scale goes below 0. (Defaults to false)
+---@field spin           number       The amount the object's `rotation` will change, per frame at 30FPS.
+---@field shake_x        number       The amount the object will shake in the `x` axis, per frame at 30FPS.
+---@field shake_y        number       The amount the object will shake in the `y` axis, per frame at 30FPS.
+---@field shake_friction number       The amount the object's shake will slow down, per frame at 30FPS.
+---@field shake_delay    number       The time it takes for the object to invert its shake direction, in seconds.
+---@field shake_timer    number       *(Used internally)* A timer used to invert the object's shake direction.
+
 --- Begin caching the transforms of all objects. \
 --- This should be called before any collision checks, and ended with Object.endCache(). \
 --- If an object is moved mid-cache, call Object.uncache() on it.
@@ -170,19 +198,6 @@ function Object:onAddToStage(stage) end
 ---@param stage Object The Stage object that the object was a child of.
 function Object:onRemoveFromStage(stage) end
 
----@class physics_table
----@field speed_x           number  The horizontal speed of the object, in pixels per frame at 30FPS.
----@field speed_y           number  The vertical speed of the object, in pixels per frame at 30FPS.
----@field speed             number  The speed the object will move in the angle of its direction, in pixels per frame at 30FPS.
----@field direction         number  The angle at which the object will move, in radians.
----@field friction          number  The amount the object's speed will slow down, per frame at 30FPS.
----@field gravity           number  The amount the object's speed will accelerate towards its gravity direction, per frame at 30FPS.
----@field gravity_direction number  The angle at which the object's gravity will accelerate towards, in radians.
----@field spin              number  The amount this object's direction will change, in radians per frame at 30FPS.
----@field match_rotation    boolean Whether the object's rotation should also define its direction. (Defaults to false)
----@field move_target?      table   A table containing data defined by `Object:slideTo()` or `Object:slideToSpeed()`.
----@field move_path?        table   A table containing data defined by `Object:slidePath()`.
-
 --- Resets all of the object's `physics` table values to their default values, \
 --- making it so it will stop moving if it was before.
 function Object:resetPhysics() end
@@ -190,21 +205,6 @@ function Object:resetPhysics() end
 --- Resets the object's `physics` and sets new values for it.
 ---@param physics physics_table A table of values to set for the object's physics.
 function Object:setPhysics(physics) end
-
----@class graphics_table
----@field fade           number       The amount the object's alpha should approach its target value, per frame at 30FPS.
----@field fade_to        number       The target alpha to approach.
----@field fade_callback  function|nil A function that will be called when the object's alpha reaches its target value.
----@field grow_x         number       The amount the object's `scale_x` will increase, per frame at 30FPS.
----@field grow_y         number       The amount the object's `scale_y` will increase, per frame at 30FPS.
----@field grow           number       The amount the object's `scale_x` and `scale_y` will increase, per frame at 30FPS.
----@field remove_shrunk  boolean      If true, the object will remove itself if its scale goes below 0. (Defaults to false)
----@field spin           number       The amount the object's `rotation` will change, per frame at 30FPS.
----@field shake_x        number       The amount the object will shake in the `x` axis, per frame at 30FPS.
----@field shake_y        number       The amount the object will shake in the `y` axis, per frame at 30FPS.
----@field shake_friction number       The amount the object's shake will slow down, per frame at 30FPS.
----@field shake_delay    number       The time it takes for the object to invert its shake direction, in seconds.
----@field shake_timer    number       *(Used internally)* A timer used to invert the object's shake direction.
 
 --- Resets all of the object's `graphics` table values to their default values, \
 --- making it so it will stop transforming if it was before.

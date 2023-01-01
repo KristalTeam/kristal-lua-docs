@@ -8,6 +8,54 @@
 
 Utils = {}
 
+---@alias easetype
+---| "linear"
+---| "in-quad"
+---| "in-cubic"
+---| "in-quart"
+---| "in-quint"
+---| "in-sine"
+---| "in-expo"
+---| "in-circ"
+---| "in-back"
+---| "in-bounce"
+---| "in-elastic"
+---| "out-quad"
+---| "out-cubic"
+---| "out-quart"
+---| "out-quint"
+---| "out-sine"
+---| "out-expo"
+---| "out-circ"
+---| "out-back"
+---| "out-bounce"
+---| "out-elastic"
+---| "in-out-quad"
+---| "in-out-cubic"
+---| "in-out-quart"
+---| "in-out-quint"
+---| "in-out-sine"
+---| "in-out-expo"
+---| "in-out-circ"
+---| "in-out-back"
+---| "in-out-bounce"
+---| "in-out-elastic"
+
+---@alias point number[]
+---@alias edge {[1]:point, [2]:point, ["angle"]:number}
+
+--- @alias linefailure
+---| "The lines are parallel."
+---| "The lines don't intersect."
+
+---@alias facing
+---| "right"
+---| "down"
+---| "left"
+---| "up"
+
+---@alias pointxy { x: number, y: number }
+
 ---
 --- Returns a substring of the specified string, properly accounting for UTF-8.
 ---
@@ -411,39 +459,6 @@ function Utils.lerp(a, b, t, oob) end
 ---
 function Utils.lerpPoint(x1, y1, x2, y2, t, oob) end
 
----@alias easetype
----| "linear"
----| "in-quad"
----| "in-cubic"
----| "in-quart"
----| "in-quint"
----| "in-sine"
----| "in-expo"
----| "in-circ"
----| "in-back"
----| "in-bounce"
----| "in-elastic"
----| "out-quad"
----| "out-cubic"
----| "out-quart"
----| "out-quint"
----| "out-sine"
----| "out-expo"
----| "out-circ"
----| "out-back"
----| "out-bounce"
----| "out-elastic"
----| "in-out-quad"
----| "in-out-cubic"
----| "in-out-quart"
----| "in-out-quint"
----| "in-out-sine"
----| "in-out-expo"
----| "in-out-circ"
----| "in-out-back"
----| "in-out-bounce"
----| "in-out-elastic"
-
 ---
 --- Returns a value eased between two numbers, determined by a percentage from 0 to 1.
 ---
@@ -503,9 +518,6 @@ function Utils.printPerformance() end
 ---@return number[] result_color # A new table of RGBA values.
 ---
 function Utils.mergeColor(start_color, end_color, amount) end
-
----@alias point number[]
----@alias edge {[1]:point, [2]:point, ["angle"]:number}
 
 ---
 --- Returns a table of line segments based on a set of polygon points.
@@ -849,12 +861,6 @@ function Utils.absMin(a, b) end
 ---
 function Utils.absMax(a, b) end
 
----@alias facing
----| "right"
----| "down"
----| "left"
----| "up"
-
 ---
 --- Returns a facing direction nearest to the specified angle.
 ---
@@ -927,8 +933,6 @@ function Utils.parsePropertyMultiList(id, properties) end
 ---@return any value          # The value that the flag should be compared to.
 ---
 function Utils.parseFlagProperties(flag, inverted, value, default_value, properties) end
-
----@alias pointxy { x: number, y: number }
 
 ---
 --- Returns a point at a certain distance along a path.

@@ -17,7 +17,12 @@ ignore = [
     os.path.join("engine", "loadthread.lua"),
     os.path.join("engine", "loadstate.lua"),
     os.path.join("utils", "graphics.lua"),
-    os.path.join("teststate.lua")
+    os.path.join("teststate.lua"),
+
+    # TODO: Should be accessible, but as variables of Kristal
+    os.path.join("engine", "menu", "menu.lua"),
+    os.path.join("engine", "shaders.lua"),
+    os.path.join("engine", "overlay.lua"),
 ]
 
 scripts = []
@@ -49,6 +54,7 @@ event_calls = []
 for script in scripts:
     functions = []
     classes = []
+    aliases = []
 
     # Read the script file
     with open(os.path.join(SRC_PATH, script)) as f:
@@ -57,11 +63,11 @@ for script in scripts:
         print(f"Processing {script}...")
 
         # Find all functions in the script file, and add them to the functions list
-        for match in re.finditer(r"((?:^---.*$[\r\n]*)+)?^function (\S+\(.*\))", data, flags=re.M):
+        for match in re.finditer(r"((?:^---.*$\n)+)?^function (\S+\(.*\))", data, flags=re.M):
             functions.append((match.group(1), match.group(2)))
 
         # Find the first class definition in the script file, and add it to the classes list
-        for match in re.finditer(r"((?:^---.*$[\r\n]*)+)?^local ([^\s,]+)(?:, super)? = (?:(?:Class)|(?:{}))", data, flags=re.M):
+        for match in re.finditer(r"((?:^---.*$\n)+)?^local ([^\s,]+)(?:, super)? = (?:(?:Class)|(?:{}))", data, flags=re.M):
             classes.append((match.group(1), match.group(2)))
             break
 
@@ -69,6 +75,10 @@ for script in scripts:
         for match in re.finditer(r"Kristal\.(?:(?:callEvent)|(?:modCall))\(\"(\S+)\"", data):
             if not match.group(1) in event_calls:
                 event_calls.append(match.group(1))
+
+        # Find standalone documentation comments (usually aliases)
+        for match in re.finditer(r"((?:^---.*$[\r\n]*)+)$(?!\n\S)", data, flags=re.M):
+            aliases.append(match.group(1))
     
     # Create a new file in the "library" folder matching the script file name, creating the directory if it doesn't exist
     os.makedirs(os.path.join("library", os.path.dirname(script)), exist_ok=True)
@@ -91,6 +101,13 @@ f"""--[[
                 f.write(class_[0])
             # Write the class definition
             f.write(f"{class_[1]} = {{}}\n\n")
+
+        # Write the aliases
+        for alias in aliases:
+            if alias.startswith("---@diagnostic"):
+                continue
+            f.write(alias)
+            f.write("\n\n")
 
         # Write the functions
         for function in functions:
