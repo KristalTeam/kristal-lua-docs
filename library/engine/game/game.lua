@@ -70,6 +70,8 @@ function Game:hasPartyMember(chara) end
 
 function Game:movePartyMember(chara, index) end
 
+function Game:getPartyIndex(chara) end
+
 function Game:checkPartyEquipped(item_id) end
 
 function Game:getSoulPartyMember() end

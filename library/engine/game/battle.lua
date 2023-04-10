@@ -110,6 +110,8 @@ function Battle:targetAny() end
 
 function Battle:target(target) end
 
+function Battle:getPartyFromTarget(target) end
+
 function Battle:hurt(amount, exact, target) end
 
 function Battle:setWaves(waves, allow_duplicates) end

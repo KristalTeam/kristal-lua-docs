@@ -125,6 +125,14 @@ function Sprite:pause() end
 
 function Sprite:flash(offset_x, offset_y, layer) end
 
+function Sprite:setCrossFadeTexture(texture) end
+
+function Sprite:resetCrossFade() end
+
+function Sprite:crossFadeTo(texture, time, fade_out, after) end
+
+function Sprite:crossFadeToSpeed(texture, speed, fade_out, after) end
+
 function Sprite:onClone(src) end
 
 function Sprite:update() end

@@ -138,6 +138,10 @@ function PartyMember:checkArmor(id) end
 
 function PartyMember:canEquip(item, slot_type, slot_index) end
 
+function PartyMember:canAutoHeal() end
+
+function PartyMember:autoHealAmount() end
+
 function PartyMember:getEquipmentBonus(stat) end
 
 function PartyMember:getStats(light) end

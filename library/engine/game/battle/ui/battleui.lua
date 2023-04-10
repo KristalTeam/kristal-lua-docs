@@ -24,6 +24,8 @@ function BattleUI:transitionOut() end
 
 function BattleUI:update() end
 
+function BattleUI:getTransitionBounds() end
+
 function BattleUI:draw() end
 
 function BattleUI:drawActionStrip() end

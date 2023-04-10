@@ -341,6 +341,51 @@ function Utils.removeFromTable(tbl, val) end
 function Utils.containsValue(tbl, val) end
 
 ---
+--- Rotates the values of a 2-dimensional array. \
+--- As an example, the following table:
+--- ```lua
+--- {
+---     {1, 2},
+---     {3, 4},
+--- }
+--- ```
+--- would result in this when passed into the function, rotating it clockwise:
+--- ```lua
+--- {
+---     {3, 1},
+---     {4, 2},
+--- }
+--- ```
+---
+---@param tbl table     # The table array to rotate the values of.
+---@param ccw? boolean  # Whether the rotation should be counterclockwise.
+---@return table result # The new rotated array.
+---
+function Utils.rotateTable(tbl, ccw) end
+
+---
+--- Flips the values of a 2-dimensional array, such that its columns become its rows, and vice versa. \
+--- As an example, the following table:
+--- ```lua
+--- {
+---     {1, 2},
+---     {3, 4},
+--- }
+--- ```
+--- would result in this when passed into the function:
+--- ```lua
+--- {
+---     {1, 3},
+---     {2, 4},
+--- }
+--- ```
+---
+---@param tbl table     # The table array to flip the values of.
+---@return table result # The new flipped array.
+---
+function Utils.flipTable(tbl) end
+
+---
 --- Rounds the specified value down to the nearest integer.
 ---
 ---@param value number   # The value to round.
@@ -570,6 +615,16 @@ function Utils.getPolygonOffset(points, dist) end
 ---
 function Utils.unpackPolygon(points) end
 
+--- Returns the bounds of a rectangle containing every point of a polygon.
+---
+---@param points point[] # An array of tables with two number values each, defining the points of a polygon.
+---@return number x      # The horizontal position of the bounds.
+---@return number y      # The vertical position of the bounds.
+---@return number width  # The width of the bounds.
+---@return number height # The height of the bounds.
+---
+function Utils.getPolygonBounds(points) end
+
 ---
 --- Returns the values of an RGB table individually.
 ---
@@ -646,9 +701,10 @@ function Utils.filterInPlace(tbl, filter) end
 ---@generic T
 ---@param tbl T[]                # An array of values.
 ---@param sort? fun(v:T):boolean # If specified, the table will be sorted via `Utils.filter(tbl, sort)` before selecting a value.
+---@param remove? boolean        # If true, the selected value will be removed from the given table.
 ---@return T result              # The randomly selected value.
 ---
-function Utils.pick(tbl, sort) end
+function Utils.pick(tbl, sort, remove) end
 
 ---
 --- Returns multiple random values from an array, not selecting any value more than once.
@@ -659,7 +715,7 @@ function Utils.pick(tbl, sort) end
 ---@param sort? fun(v:T):boolean # If specified, the table will be sorted via `Utils.filter(tbl, sort)` before selecting a value.
 ---@return T result              # A table containing the randomly selected values.
 ---
-function Utils.pickMultiple(tbl, amount, sort) end
+function Utils.pickMultiple(tbl, amount, sort, remove) end
 
 ---
 --- Returns a table containing the values of another table, randomly rearranged.
@@ -822,6 +878,15 @@ function Utils.getIndex(t, value) end
 ---@return K? key      # The key found for the specified value.
 ---
 function Utils.getKey(t, value) end
+
+---
+--- Returns a list of every key in a table.
+---
+---@generic T
+---@param t table<T, any> # The table to get the keys from.
+---@return T[] result     # An array of each key in the table.
+---
+function Utils.getKeys(t) end
 
 ---
 --- Returns the value found for a string index, ignoring case-sensitivity.

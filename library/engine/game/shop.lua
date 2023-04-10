@@ -78,3 +78,11 @@ function Shop:getFlag(name, default) end
 
 function Shop:sellItem(current_item) end
 
+function Shop:getMoney() end
+
+function Shop:setMoney(amount) end
+
+function Shop:addMoney(amount) end
+
+function Shop:removeMoney(amount) end
+

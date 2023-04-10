@@ -52,6 +52,8 @@ function Encounter:getNextWaves() end
 
 function Encounter:getPartyPosition(index) end
 
+function Encounter:getSoulColor() end
+
 function Encounter:onDialogueEnd() end
 
 function Encounter:onWavesDone() end

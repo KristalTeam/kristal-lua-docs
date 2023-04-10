@@ -10,7 +10,7 @@ Mods = {}
 
 function Mods.clear() end
 
-function Mods.loadData(data) end
+function Mods.loadData(data, failed_mods) end
 
 function Mods.getMods() end
 

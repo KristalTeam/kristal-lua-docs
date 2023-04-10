@@ -74,7 +74,9 @@ function EnemyBattler:forceDefeat(amount, battler) end
 
 function EnemyBattler:getAttackTension(points) end
 
-function EnemyBattler:getAttackDamage(damage, battler) end
+function EnemyBattler:getAttackDamage(damage, battler, points) end
+
+function EnemyBattler:getDamageSound() end
 
 function EnemyBattler:onHurt(damage, battler) end
 

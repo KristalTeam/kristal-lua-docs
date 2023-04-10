@@ -66,6 +66,8 @@ function Character:setSprite(sprite) end
 
 function Character:setCustomSprite(sprite, ox, oy) end
 
+function Character:setWalkSprite(sprite) end
+
 function Character:resetSprite() end
 
 function Character:setAnimation(animation, after) end

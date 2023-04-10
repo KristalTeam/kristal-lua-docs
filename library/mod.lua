@@ -26,6 +26,8 @@ function Mod:loadObject(...) end
 
 function Mod:loadController(...) end
 
+function Mod:getActionOrder(...) end
+
 function Mod:registerDebugContext(...) end
 
 function Mod:registerDebugOptions(...) end
@@ -39,6 +41,8 @@ function Mod:getConfig(...) end
 function Mod:save(...) end
 
 function Mod:load(...) end
+
+function Mod:getSoulColor(...) end
 
 function Mod:preUpdate(...) end
 

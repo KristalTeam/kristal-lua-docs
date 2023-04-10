@@ -12,6 +12,8 @@ DarkPowerMenu = {}
 
 function DarkPowerMenu:init() end
 
+function DarkPowerMenu:getSpellLimit() end
+
 function DarkPowerMenu:getSpells() end
 
 function DarkPowerMenu:updateDescription() end

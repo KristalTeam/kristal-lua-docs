@@ -28,6 +28,8 @@ function ActorSprite:_setSprite(texture, keep_anim) end
 
 function ActorSprite:setAnimation(anim, callback, ignore_actor_callback) end
 
+function ActorSprite:setWalkSprite(texture) end
+
 function ActorSprite:canTalk() end
 
 function ActorSprite:setFacing(facing) end

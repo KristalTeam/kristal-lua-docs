@@ -20,3 +20,5 @@ function HealthBar:update() end
 
 function HealthBar:draw() end
 
+function HealthBar:react(chara, reaction) end
+

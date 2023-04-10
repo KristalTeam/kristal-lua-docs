@@ -42,6 +42,8 @@ function Player:handleMovement() end
 
 function Player:updateWalk() end
 
+function Player:isMoving() end
+
 function Player:beginSlide(last_state, in_place, lock_movement) end
 
 function Player:updateSlideDust() end
