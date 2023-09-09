@@ -10,8 +10,9 @@
             "${3rd}/love2d/library"
         ],
         "Lua.diagnostics.disable": [
-            "duplicate-set-field",
-            "need-check-nil"
+            "need-check-nil",
+            "inject-field",
+            "duplicate-set-field"
         ],
         "Lua.type.weakNilCheck": true,
         "Lua.type.weakUnionCheck": true
