@@ -12,8 +12,6 @@ subprocess.call(['git', 'submodule', 'update', '--init', '--remote', "Kristal"])
 SRC_PATH = os.path.join("Kristal", "src")
 
 ignore = [
-    os.path.join("engine", "vars.lua"),
-    os.path.join("engine", "statevars.lua"),
     os.path.join("engine", "loadthread.lua"),
     os.path.join("engine", "loadstate.lua"),
     os.path.join("utils", "graphics.lua"),
@@ -25,7 +23,14 @@ ignore = [
     os.path.join("engine", "overlay.lua"),
 ]
 
+copy = [
+    os.path.join("engine", "vars.lua"),
+    os.path.join("engine", "statevars.lua"),
+    os.path.join("engine", "vendcust.lua"),
+]
+
 scripts = []
+copy_scripts = []
 
 # Loop through the files recursively inside the "Kristal/src" directory, excluding the "lib" directory
 for root, dirs, files in os.walk(SRC_PATH, topdown=False):
@@ -33,8 +38,11 @@ for root, dirs, files in os.walk(SRC_PATH, topdown=False):
         # Get the path of the file relative to the "Kristal/src" directory
         path = os.path.join(root, name)[len(SRC_PATH) + 1:]
         # If the file is a .lua file, and it's not in the "lib" directory, add it to the scripts list
-        if path.endswith(".lua") and not path.startswith("lib"+os.path.sep) and not path in ignore:
-            scripts.append(path)
+        if path.endswith(".lua") and not path.startswith("lib"+os.path.sep):
+            if path in copy:
+                copy_scripts.append(path)
+            elif not path in ignore:
+                scripts.append(path)
 
 # If we have a "library" folder, delete it and all of its contents
 if os.path.exists("library"):
@@ -119,6 +127,33 @@ f"""--[[
                 f.write(function[0])
             # Write the function definition
             f.write(f"function {function[1]} end\n\n")
+
+# Also process each file that should be directly copied
+for script in copy_scripts:
+    print(f"Copying {script}...")
+
+    # Read the contents of the script
+    f = open(os.path.join(SRC_PATH, script), "r")
+    script_text = f.read()
+    f.close()
+
+    # Create a new file in the "library" folder matching the script file name, creating the directory if it doesn't exist
+    os.makedirs(os.path.join("library", os.path.dirname(script)), exist_ok=True)
+    with open(os.path.join("library", script), "w") as f:
+        # Write the script file name as a comment
+        normal_path = script.replace("\\", "/")
+        f.write(
+f"""--[[
+    Generated from {os.path.join(SRC_PATH, script)}
+
+    Source: https://github.com/KristalTeam/Kristal/blob/main/src/{normal_path}
+]]""")
+        
+        # Append the meta annotation to the file
+        f.write("\n\n---@meta\n\n")
+
+        # Copy the script to the output file
+        f.write(script_text)
 
 
 # Temp solution to Mod global
