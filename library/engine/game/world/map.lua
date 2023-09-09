@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Map
+---@class Map : Class
 ---@overload fun(...) : Map
 Map = {}
 

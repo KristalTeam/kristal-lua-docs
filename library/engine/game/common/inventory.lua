@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Inventory
+---@class Inventory : Class
 ---@overload fun(...) : Inventory
 Inventory = {}
 

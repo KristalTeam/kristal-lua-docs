@@ -22,6 +22,10 @@ function DarkPowerMenu:onRemove(parent) end
 
 function DarkPowerMenu:update() end
 
+function DarkPowerMenu:selectParty(target_type, spell) end
+
+function DarkPowerMenu:canCast(spell) end
+
 function DarkPowerMenu:draw() end
 
 function DarkPowerMenu:drawChar() end

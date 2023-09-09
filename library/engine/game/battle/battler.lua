@@ -12,11 +12,17 @@ Battler = {}
 
 function Battler:init(x, y, width, height) end
 
+function Battler:setActor(actor, use_overlay) end
+
+function Battler:toggleOverlay(overlay) end
+
 function Battler:flash(sprite, offset_x, offset_y, layer) end
 
 function Battler:sparkle(r, g, b) end
 
 function Battler:statusMessage(x, y, type, arg, color, kill) end
+
+function Battler:recruitMessage(x, y, type) end
 
 function Battler:spawnSpeechBubble(text, options) end
 

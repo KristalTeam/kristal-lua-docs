@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Actor
+---@class Actor : Class
 ---@overload fun(...) : Actor
 Actor = {}
 

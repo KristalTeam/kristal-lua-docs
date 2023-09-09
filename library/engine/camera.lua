@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Camera
+---@class Camera : Class
 ---@overload fun(...) : Camera
 Camera = {}
 

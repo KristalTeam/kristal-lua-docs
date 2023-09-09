@@ -9,7 +9,7 @@
 --- The base class of all objects in Kristal. \
 --- When added to the stage, an object will be updated and rendered.
 ---
----@class Object
+---@class Object : Class
 ---@field x      number The horizontal position of the object, relative to its parent.
 ---@field y      number The vertical position of the object, relative to its parent.
 ---@field width  number The width of the object.
@@ -251,13 +251,9 @@ function Object:shake(x, y, friction, delay) end
 function Object:stopShake() end
 
 --- Moves the object's `x` and `y` values to the new specified position over `time` seconds.
+---@overload fun(self:Object, marker:string, time?:number, ease?:string, after?:function): success:boolean
 ---@param x      number   The new `x` value to approach.
 ---@param y      number   The new `y` value to approach.
----@param time?  number   The amount of time, in seconds, that the slide should take. (Defaults to 1 second)
----@param ease?  string   The ease type to use when moving to the new position. (Defaults to "linear")
----@param after? function A function that will be called when the target position is reached. Receives no arguments.
----@return boolean success Whether the sliding will occur. False if the object's current position is already at the specified position, and true otherwise.
----@overload fun(self:Object, marker:string, time?:number, ease?:string, after?:function): success:boolean
 ---@param marker string   A map marker whose position the object should approach.
 ---@param time?  number   The amount of time, in seconds, that the slide should take. (Defaults to 1 second)
 ---@param ease?  string   The ease type to use when moving to the new position. (Defaults to "linear")
@@ -266,11 +262,9 @@ function Object:stopShake() end
 function Object:slideTo(x, y, time, ease, after) end
 
 --- Moves the object's `x` and `y` values to the new specified position at a speed of `speed` pixels per frame.
+---@overload fun(self:Object, marker:string, time?:number, ease?:string, after?:function): success:boolean
 ---@param x      number   The new `x` value to approach.
 ---@param y      number   The new `y` value to approach.
----@param speed? number   The amount that the object's `x` and `y` should approach the specified position, in pixels per frame at 30FPS. (Defaults to 4)
----@param after? function A function that will be called when the target position is reached. Receives no arguments.
----@overload fun(self:Object, marker:string, time?:number, ease?:string, after?:function): success:boolean
 ---@param marker string   A map marker whose position the object should approach.
 ---@param speed? number   The amount that the object's `x` and `y` should approach the specified position, in pixels per frame at 30FPS. (Defaults to 4)
 ---@param after? function A function that will be called when the target position is reached. Receives no arguments.
@@ -341,11 +335,11 @@ function Object:setScale(x, y) end
 function Object:getScale() end
 
 --- Sets the object's `color` and `alpha` values to the specified color.
+---@overload fun(self:Object, color:{r:number, g:number, b:number, a?:number})
 ---@param r  number The red value to set for the object's `color`.
 ---@param g  number The green value to set for the object's `color`.
 ---@param b  number The blue value to set for the object's `color`.
 ---@param a? number The value to set `alpha` to. (Doesn't change alpha if unspecified)
----@overload fun(self:Object, color:{r:number, g:number, b:number, a?:number})
 ---@param color table The value to set `color` to. Can optionally define a 4th value to set alpha.
 function Object:setColor(r, g, b, a) end
 
@@ -496,9 +490,9 @@ function Object:setCutout(left, top, right, bottom) end
 function Object:getCutout() end
 
 --- Sets the object's speed in its `physics` table.
+---@overload fun(self:Object, speed:number)
 ---@param x number The value to set `physics.speed_x` to.
 ---@param y number The value to set `physics.speed_y` to.
----@overload fun(self:Object, speed:number)
 ---@param speed number The value to set `physics.speed` to.
 function Object:setSpeed(x, y) end
 
@@ -521,10 +515,10 @@ function Object:setDirection(dir) end
 function Object:getDirection() end
 
 --- Returns the dimensions of the object's `collider` if that collider is a Hitbox.
----@return number The `x` position of the collider, relative to the object.
----@return number The `y` position of the collider, relative to the object.
----@return number The `width` of the collider, in pixels.
----@return number The `height` of the collider, in pixels.
+---@return number|nil x The `x` position of the collider, relative to the object.
+---@return number|nil y The `y` position of the collider, relative to the object.
+---@return number|nil width The `width` of the collider, in pixels.
+---@return number|nil height The `height` of the collider, in pixels.
 function Object:getHitbox() end
 
 --- Sets the object's `collider` to a new Hitbox with the specified dimensions.
@@ -586,22 +580,22 @@ function Object:setScreenPos(x, y) end
 function Object:getScreenPos() end
 
 --- Returns the specified position for the object, relative to the object's stage.
----@param x number The `x` position relative to the object.
----@param y number The `y` position relative to the object.
+---@param x? number The `x` position relative to the object.
+---@param y? number The `y` position relative to the object.
 ---@return number x The new `x` position relative to the object's stage.
 ---@return number y The new `y` position relative to the object's stage.
 function Object:localToScreenPos(x, y) end
 
 --- Returns the specified position for the object's stage, relative to this object.
----@param x number The `x` position relative to the object's stage.
----@param y number The `y` position relative to the object's stage.
+---@param x? number The `x` position relative to the object's stage.
+---@param y? number The `y` position relative to the object's stage.
 ---@return number x The new `x` position relative to the object.
 ---@return number y The new `y` position relative to the object.
 function Object:screenToLocalPos(x, y) end
 
 --- Returns the specified position for the object, relative to another object.
----@param x      number The `x` position relative to the object.
----@param y      number The `y` position relative to the object.
+---@param x?     number The `x` position relative to the object.
+---@param y?     number The `y` position relative to the object.
 ---@param other? Object The object the returned values should be relative to.
 ---@return number x The new `x` position relative to the `other` object.
 ---@return number y The new `y` position relative to the `other` object.
@@ -630,18 +624,19 @@ function Object:applyScissor() end
 --- Adds a DrawFX to the object. \
 --- DrawFX are classes that can apply visual effects to an object when drawing it. \
 --- Each effect will be applied in sequence, with effects of higher priority rendering later.
----@param fx  DrawFX The DrawFX instance to add to the object.
+---@generic T : DrawFX
+---@param fx T The DrawFX instance to add to the object.
 ---@param id? string An optional string ID that can be used to reference the DrawFX in other functions.
----@return DrawFX fx The DrawFX instance that was added to the object.
+---@return T fx The DrawFX instance that was added to the object.
 function Object:addFX(fx, id) end
 
 --- Returns a DrawFX added to the object.
----@param id string|class|DrawFX A string referring to the ID of a DrawFX, the class type that a DrawFX includes, or a DrawFX instance.
+---@param id string|Class|DrawFX A string referring to the ID of a DrawFX, the class type that a DrawFX includes, or a DrawFX instance.
 ---@return DrawFX|nil fx A DrawFX instance if the object has one that matches the ID, or `nil` otherwise.
 function Object:getFX(id) end
 
 --- Removes the specified DrawFX from the object.
----@param id string|class|DrawFX A string referring to the ID of a DrawFX, the class type that a DrawFX includes, or a DrawFX instance.
+---@param id string|Class|DrawFX A string referring to the ID of a DrawFX, the class type that a DrawFX includes, or a DrawFX instance.
 ---@return DrawFX|nil fx The removed DrawFX instance if the object has one that matches the ID, or `nil` otherwise.
 function Object:removeFX(id) end
 

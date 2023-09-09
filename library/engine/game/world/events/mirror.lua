@@ -6,6 +6,7 @@
 
 ---@meta
 
+---@class MirrorArea : Event
 MirrorArea = {}
 
 function MirrorArea:init(x, y, w, h, properties) end

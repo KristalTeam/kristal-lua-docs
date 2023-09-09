@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Music
+---@class Music : Class
 ---@overload fun(...) : Music
 Music = {}
 

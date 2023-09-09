@@ -20,6 +20,7 @@ function LightInventory:getDarkInventory() end
 
 function LightInventory:getDefaultStorage(item_type) end
 
+---@return Item|nil
 function LightInventory:addItem(item, ignore_dark) end
 
 function LightInventory:tryGiveItem(item, ignore_dark) end

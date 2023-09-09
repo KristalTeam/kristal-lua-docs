@@ -80,6 +80,8 @@ function Character:processJump() end
 
 function Character:statusMessage(type, arg, color, kill) end
 
+function Character:recruitMessage(type, color) end
+
 function Character:convertToFollower(index, save) end
 
 function Character:convertToPlayer() end

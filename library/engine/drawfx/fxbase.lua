@@ -6,7 +6,8 @@
 
 ---@meta
 
----@class FXBase
+---@alias DrawFX FXBase
+---@class FXBase : Class
 ---@overload fun(...) : FXBase
 FXBase = {}
 

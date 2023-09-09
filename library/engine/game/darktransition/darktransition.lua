@@ -14,8 +14,6 @@ function DarkTransition:init(final_y, options) end
 
 function DarkTransition:onAddToStage(stage) end
 
-function DarkTransition:resumeTransition() end
-
 function DarkTransition:drawDoor(x, y, xscale, yscale, rot, color) end
 
 function DarkTransition:update() end

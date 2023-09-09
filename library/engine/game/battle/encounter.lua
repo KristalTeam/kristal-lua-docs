@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Encounter
+---@class Encounter : Class
 ---@overload fun(...) : Encounter
 Encounter = {}
 
@@ -32,11 +32,21 @@ function Encounter:beforeStateChange(old, new) end
 
 function Encounter:onStateChange(old, new) end
 
+function Encounter:onActionSelect(battler, button) end
+
+function Encounter:onMenuSelect(state, item, can_select) end
+
 function Encounter:onGameOver() end
 
 function Encounter:onReturnToWorld(events) end
 
 function Encounter:getDialogueCutscene() end
+
+function Encounter:getVictoryMoney(money) end
+
+function Encounter:getVictoryXP(xp) end
+
+function Encounter:getVictoryText(text, money, xp) end
 
 function Encounter:update() end
 
@@ -53,6 +63,8 @@ function Encounter:getNextWaves() end
 function Encounter:getPartyPosition(index) end
 
 function Encounter:getSoulColor() end
+
+function Encounter:getSoulSpawnLocation() end
 
 function Encounter:onDialogueEnd() end
 

@@ -94,11 +94,11 @@ function EnemyBattler:freeze() end
 
 function EnemyBattler:statusMessage(...) end
 
+function EnemyBattler:recruitMessage(...) end
+
 function EnemyBattler:defeat(reason, violent) end
 
 function EnemyBattler:setActor(actor, use_overlay) end
-
-function EnemyBattler:toggleOverlay(overlay) end
 
 function EnemyBattler:setSprite(sprite, speed, loop, after) end
 

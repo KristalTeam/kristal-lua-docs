@@ -60,7 +60,7 @@ function DebugSystem:registerDefaults() end
 
 function DebugSystem:getValidOptions() end
 
-function DebugSystem:registerOption(menu, name, description, func, state) end
+function DebugSystem:registerOption(menu, name, description, func, visible_func) end
 
 function DebugSystem:openSelection() end
 

@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class PartyMember
+---@class PartyMember : Class
 ---@overload fun(...) : PartyMember
 PartyMember = {}
 

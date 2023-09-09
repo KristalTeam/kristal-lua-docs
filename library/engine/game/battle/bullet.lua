@@ -8,6 +8,8 @@
 
 ---@class Bullet : Object
 ---@overload fun(...) : Bullet
+---@field attacker EnemyBattler
+---@field wave Wave
 Bullet = {}
 
 function Bullet:init(x, y, texture) end

@@ -14,7 +14,7 @@ function Kristal.onKeyReleased(key) end
 
 --- Kristal alternative to the default love.errorhandler. \
 --- Called when an error occurs.
----@param  msg string           The error message.
+---@param  msg string|table     The error message.
 ---@return function|nil handler The error handler, called every frame instead of the main loop.
 function Kristal.errorHandler(msg) end
 
@@ -90,6 +90,9 @@ function Kristal.loadMod(id, save_id, save_name, after) end
 ---@param after        function     The function to call after assets have been loaded.
 function Kristal.loadModAssets(id, asset_type, asset_paths, after) end
 
+--- Called internally. Gets the intended title of the game window.
+function Kristal.getDesiredWindowTitle() end
+
 --- Called internally. Calls the `preInit` event on the mod and initializes the registry.
 ---@param id string        The id of the mod to pre-initialize.
 ---@return boolean success Whether the mod should use default handling to enter the game.
@@ -116,10 +119,6 @@ function Kristal.getBorder() end
 
 ---@return string|nil border The currently displayed border if dynamic borders are enabled.
 function Kristal.processDynamicBorder() end
-
---- Called internally to determine whether borders should be set.
----@return boolean exists Whether a stage transition exists.
-function Kristal.stageTransitionExists() end
 
 --- Fades out the screen border.
 ---@param time?     number  The time it takes to fade out the border. Defaults to `0.5`.

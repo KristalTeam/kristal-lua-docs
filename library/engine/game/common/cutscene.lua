@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Cutscene
+---@class Cutscene : Class
 ---@overload fun(...) : Cutscene
 Cutscene = {}
 

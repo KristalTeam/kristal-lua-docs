@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Spell
+---@class Spell : Class
 ---@overload fun(...) : Spell
 Spell = {}
 
@@ -23,6 +23,10 @@ function Spell:getBattleDescription() end
 function Spell:getTPCost(chara) end
 
 function Spell:isUsable(chara) end
+
+function Spell:hasWorldUsage(chara) end
+
+function Spell:onWorldCast(chara) end
 
 function Spell:hasTag(tag) end
 

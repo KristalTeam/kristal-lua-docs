@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Item
+---@class Item : Class
 ---@overload fun(...) : Item
 Item = {}
 

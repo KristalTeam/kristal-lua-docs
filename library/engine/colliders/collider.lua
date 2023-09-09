@@ -6,7 +6,7 @@
 
 ---@meta
 
----@class Collider
+---@class Collider : Class
 ---@overload fun(...) : Collider
 Collider = {}
 

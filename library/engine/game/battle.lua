@@ -12,6 +12,8 @@ Battle = {}
 
 function Battle:init() end
 
+function Battle:createPartyBattlers() end
+
 function Battle:postInit(state, encounter) end
 
 function Battle:showUI() end
@@ -26,7 +28,7 @@ function Battle:getState() end
 
 function Battle:onStateChange(old,new) end
 
-function Battle:getSoulLocation(always_player) end
+function Battle:getSoulLocation(always_origin) end
 
 function Battle:spawnSoul(x, y) end
 
@@ -58,13 +60,15 @@ function Battle:processAction(action) end
 
 function Battle:getCurrentAction() end
 
-function Battle:getActionBy(battler) end
+function Battle:getActionBy(battler, ignore_current) end
 
 function Battle:finishActionBy(battler) end
 
 function Battle:finishAllActions() end
 
 function Battle:allActionsDone() end
+
+function Battle:clearActionIcon(battler) end
 
 function Battle:markAsFinished(action, keep_animation) end
 
@@ -190,7 +194,15 @@ function Battle:advanceBoxes() end
 
 function Battle:getTargetForItem(item, default_ally, default_enemy) end
 
+function Battle:clearMenuItems() end
+
+function Battle:addMenuItem(tbl) end
+
 function Battle:onKeyPressed(key) end
+
+function Battle:handleActionSelectInput(key) end
+
+function Battle:handleAttackingInput(key) end
 
 function Battle:canDeepCopy() end
 

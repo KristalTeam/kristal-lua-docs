@@ -28,9 +28,9 @@ function Console:onSubmit() end
 
 function Console:close() end
 
-function Console:print(text, x, y, ignore_modifiers) end
+function Console:print(text, x, y) end
 
-function Console:printChar(char, x, y) end
+function Console:printOutlined(text, x, y) end
 
 function Console:draw() end
 

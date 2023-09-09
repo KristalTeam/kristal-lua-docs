@@ -41,7 +41,7 @@
 ---@field anim_routine_func Sprite.anim_func|nil      *(Read-only)* The function of the current sprite animation.
 ---@field anim_wait_func    Sprite.wait_func          *(Read-only)* The function used to wait for the next frame of the animation.
 ---
----@overload fun(texture:string|love.Image, x?:number, y?:number, width?:number, height?:number, path?:string) : Sprite
+---@overload fun(texture:string|love.Image|nil, x?:number, y?:number, width?:number, height?:number, path?:string) : Sprite
 Sprite = {}
 
 ---@alias Sprite.wait_func     fun(seconds:number)
@@ -77,6 +77,14 @@ function Sprite:setProgress(progress) end
 ---@param name string  The relative path of the sprite to get the full path of.
 function Sprite:getPath(name) end
 
+---@param texture string  The texture to check the existence of, relative to this sprite's path.
+---@return boolean exists  Whether the given texture exists.
+function Sprite:hasSprite(texture) end
+
+---@param texture string  The texture to check against this sprite's current texture, relative to this sprite's path.
+---@return boolean equal  Whether the textures are equal.
+function Sprite:isSprite(texture) end
+
 --- Sets the sprite to either a texture or an animation. \
 --- If the given texture is a string or image, it will be passed into `Sprite:setSprite()`. \
 --- If the given texture is a table, it will be passed into `Sprite:setAnimation()`.
@@ -105,7 +113,7 @@ function Sprite:setFrame(frame) end
 
 --- *(Called internally)* Sets the current sprite to a list of frames, and updates the texture.  \
 --- **Note**: *Ignores `path` and single-frame textures. Use `Sprite:setSprite()` instead.*
----@param frames table  The frames to set the sprite to.
+---@param frames string|table  The frames to set the sprite to.
 ---@param keep_anim? boolean  If `true`, this will not interrupt the current animation. Otherwise, any animation will be stopped.
 function Sprite:setFrames(frames, keep_anim) end
 

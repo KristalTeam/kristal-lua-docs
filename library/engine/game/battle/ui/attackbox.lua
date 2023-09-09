@@ -10,13 +10,15 @@
 ---@overload fun(...) : AttackBox
 AttackBox = {}
 
-function AttackBox:init(battler, offset, x, y) end
+function AttackBox:init(battler, offset, index, x, y) end
 
 function AttackBox:getClose() end
 
 function AttackBox:hit() end
 
 function AttackBox:miss() end
+
+function AttackBox:endAttack() end
 
 function AttackBox:update() end
 

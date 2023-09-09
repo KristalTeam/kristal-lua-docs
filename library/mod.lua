@@ -8,6 +8,8 @@ Mod = {}
 
 function Mod:getActionButtons(...) end
 
+function Mod:onActionSelect(...) end
+
 function Mod:createDarkInventory(...) end
 
 function Mod:onConvertToLight(...) end
@@ -27,6 +29,20 @@ function Mod:loadObject(...) end
 function Mod:loadController(...) end
 
 function Mod:getActionOrder(...) end
+
+function Mod:onBattleActionBegin(...) end
+
+function Mod:onBattleAction(...) end
+
+function Mod:onBattleActionEnd(...) end
+
+function Mod:onBattleActionEndAnimation(...) end
+
+function Mod:onBattleActionCommit(...) end
+
+function Mod:onBattleActionUndo(...) end
+
+function Mod:onBattleMenuSelect(...) end
 
 function Mod:registerDebugContext(...) end
 
@@ -57,6 +73,8 @@ function Mod:preDraw(...) end
 function Mod:postDraw(...) end
 
 function Mod:createMenu(...) end
+
+function Mod:onMapMusic(...) end
 
 function Mod:onTextSound(...) end
 

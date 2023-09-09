@@ -82,8 +82,16 @@ function WorldCutscene:setSpeaker(actor, talk) end
 
 function WorldCutscene:setTextboxTop(top) end
 
+---@overload fun(self: WorldCutscene, x: number, y: number, time?: number, ease?: easetype, after?: fun()) : fun(self: WorldCutscene)
+---@overload fun(self: WorldCutscene, marker: string, time?: number, ease?: easetype, after?: fun()) : fun(self: WorldCutscene)
+---@overload fun(self: WorldCutscene, chara: Character, time?: number, ease?: easetype, after?: fun()) : fun(self: WorldCutscene)
+---@overload fun() : fun(self: WorldCutscene)
 function WorldCutscene:panTo(...) end
 
+---@overload fun(self: WorldCutscene, x: number, y: number, speed?: number, after?: fun()) : fun(self: WorldCutscene)
+---@overload fun(self: WorldCutscene, marker: string, speed?: number, after?: fun()) : fun(self: WorldCutscene)
+---@overload fun(self: WorldCutscene, chara: Character, speed?: number, after?: fun()) : fun(self: WorldCutscene)
+---@overload fun() : fun(self: WorldCutscene)
 function WorldCutscene:panToSpeed(...) end
 
 function WorldCutscene:mapTransition(...) end
@@ -99,6 +107,8 @@ function WorldCutscene:text(text, portrait, actor, options) end
 function WorldCutscene:closeText() end
 
 function WorldCutscene:choicer(choices, options) end
+
+function WorldCutscene:textChoicer(text, choices, portrait, actor, options) end
 
 function WorldCutscene:startEncounter(encounter, transition, enemy, options) end
 

@@ -40,6 +40,46 @@ Utils = {}
 ---| "in-out-back"
 ---| "in-out-bounce"
 ---| "in-out-elastic"
+---| "inQuad"
+---| "outQuad"
+---| "inOutQuad"
+---| "outInQuad"
+---| "inCubic"
+---| "outCubic"
+---| "inOutCubic"
+---| "outInCubic"
+---| "inQuart"
+---| "outQuart"
+---| "inOutQuart"
+---| "outInQuart"
+---| "inQuint"
+---| "outQuint"
+---| "inOutQuint"
+---| "outInQuint"
+---| "inSine"
+---| "outSine"
+---| "inOutSine"
+---| "outInSine"
+---| "inExpo"
+---| "outExpo"
+---| "inOutExpo"
+---| "outInExpo"
+---| "inCirc"
+---| "outCirc"
+---| "inOutCirc"
+---| "outInCirc"
+---| "inElastic"
+---| "outElastic"
+---| "inOutElastic"
+---| "outInElastic"
+---| "inBack"
+---| "outBack"
+---| "inOutBack"
+---| "outInBack"
+---| "inBounce"
+---| "outBounce"
+---| "inOutBounce"
+---| "outInBounce"
 
 ---@alias point number[]
 ---@alias edge {[1]:point, [2]:point, ["angle"]:number}
@@ -759,11 +799,11 @@ function Utils.group(tbl, count) end
 ---
 --- Returns the angle from one point to another, or from one object's position to another's.
 ---
----@param x1 number     # The horizontal position of the first point.
----@param y1 number     # The vertical position of the first point.
----@param x2 number     # The horizontal position of the second point.
----@param y2 number     # The vertical position of the second point.
----@return number angle # The angle from the first point to the second point.
+---@param x1 number|Object  # The horizontal position of the first point.
+---@param y1 number|Object  # The vertical position of the first point.
+---@param x2 number|Object  # The horizontal position of the second point.
+---@param y2 number|Object  # The vertical position of the second point.
+---@return number angle     # The angle from the first point to the second point.
 ---
 ---@overload fun(obj1:Object, obj2:Object): angle:number
 ---
@@ -823,6 +863,10 @@ function Utils.startsWith(value, prefix) end
 ---
 function Utils.endsWith(value, suffix) end
 
+---@param prefix string base directory of images in the mod
+---@param image string raw image path specified by tileset/map
+---@param path string path of tileset/map, `image` is relative to this
+---@return string|nil final_path nil in case of error
 function Utils.absoluteToLocalPath(prefix, image, path) end
 
 ---
@@ -1066,4 +1110,27 @@ function Utils.padString(str, len, beginning, with) end
 ---@overload fun(val:number, max:number):number
 ---
 function Utils.clampWrap(val, min, max) end
+
+---@generic K
+---@generic V
+---@param table table<K,V>
+---@param index? K
+---@return K|nil
+---@return V|nil
+---@see http://lua-users.org/wiki/SortedIteration
+function Utils.orderedNext(table, index) end
+
+---@generic K
+---@generic V
+---@param t table<K, V> The table to iterate
+---@return fun(table: table<K,V>, index?: K):K,V next
+---@return table<K, V> t
+---@return nil
+---@see http://lua-users.org/wiki/SortedIteration
+function Utils.orderedPairs(t) end
+
+---@param path string
+---@return string dirname
+---@see https://stackoverflow.com/a/12191225
+function Utils.getDirname(path) end
 

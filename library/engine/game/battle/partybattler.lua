@@ -40,6 +40,8 @@ function PartyBattler:checkHealth() end
 
 function PartyBattler:statusMessage(...) end
 
+function PartyBattler:recruitMessage(...) end
+
 function PartyBattler:isActive() end
 
 function PartyBattler:isTargeted() end

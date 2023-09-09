@@ -6,11 +6,11 @@
 
 ---@meta
 
----@class Tileset
+---@class Tileset : Class
 ---@overload fun(...) : Tileset
 Tileset = {}
 
-function Tileset:init(data, path) end
+function Tileset:init(data, path, base_dir) end
 
 function Tileset:getAnimation(id) end
 
